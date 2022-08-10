@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3898009147727732987}
   - component: {fileID: 190340678528018281}
   m_Layer: 0
-  m_Name: GreenCircle
+  m_Name: 1.RedSquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7947437550627244432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0046022236, y: 6.008833, z: -6.5782986}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 63dc09fb70af5407e88899fd1eb64a7a, type: 2}
+  - {fileID: 2100000, guid: f706514654f644d9bbfe2a67cc10f916, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
