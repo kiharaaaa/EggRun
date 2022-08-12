@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Display : MonoBehaviour
+public class DisplaySystem : MonoBehaviour
 {
     public Image image;
     public Sprite[] Target;

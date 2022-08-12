@@ -1,14 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameSystem : MonoBehaviour
 {
+    public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI LevelText;
+
     public float TargetDistance;
     int count;
     public GameObject[] TargetPrefab;
     int ans;
     public GameObject Player;
+    public float GoalDistance;
+    int r;
+
+    public Image BackGroundImage;
+    public TextMeshProUGUI GameClearText;
+    public TextMeshProUGUI GameOverText;
+    public Button ResumeButton;
+    public Button RestartButton;
+    public Button TitleButton;
 
     int[,] TargetArray = new int[54, 5] {  // ans, 表示, 選択肢1~3
         { 0, 0, 0, 4, 8} ,
@@ -74,9 +88,10 @@ public class GameSystem : MonoBehaviour
     {
         count++;
 
-        int r = Random.Range(0, 54);
+        r = Random.Range(0, 54);
+
         ans = TargetArray[r, 0];
-        Display.flag = TargetArray[r, 1];
+        DisplaySystem.flag = TargetArray[r, 1];
         int[] choice = new int[3] {
             TargetArray[r, 2],
             TargetArray[r, 3],
@@ -93,37 +108,76 @@ public class GameSystem : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            if (ans == choice[i]) ans = i;
+            if (ans == choice[i])
+            {
+                ans = i;
+                break;
+            }
         }
 
         Instantiate(TargetPrefab[ choice[0] ], new Vector3(-2.0f, 0.5f, TargetDistance * count), Quaternion.identity);
         Instantiate(TargetPrefab[ choice[1] ], new Vector3( 0.0f, 0.5f, TargetDistance * count), Quaternion.identity);
         Instantiate(TargetPrefab[ choice[2] ], new Vector3( 2.0f, 0.5f, TargetDistance * count), Quaternion.identity);
-
-        Debug.Log(r);
     }
 
     void Start()
     {
+        BackGroundImage.gameObject.SetActive(false);
+        GameClearText.gameObject.SetActive(false);
+        GameOverText.gameObject.SetActive(false);
+        ResumeButton.gameObject.SetActive(false);
+        RestartButton.gameObject.SetActive(false);
+        TitleButton.gameObject.SetActive(false);
+
+        LevelText.text = "Level : " + 0;
+        ScoreText.text = "Score : " + 0 + "m";
         count = 0;
         Set();
     }
 
     void Update()
     {
+        LevelText.text = "Level : " + PlayerMove.level;
+        ScoreText.text = "Score : " + Player.transform.position.z.ToString("f1") + "m";
+
         if (Player.transform.position.z - 0.5f >= TargetDistance * count)
         {
             if (PlayerMove.lane == ans)
             {
                 Set();
-                Debug.Log("ok");
             }
             else
             {
-                Debug.Log("ng");
-                Debug.Break();
+                Debug.Log(r + " " + ans);
+                GameOver();
             }
         }
 
+        if (Player.transform.position.z - 0.5f >= GoalDistance)
+        {
+            Debug.Log("Goal!");
+            GameClear();
+        }
+
+    }
+
+    void GameOver()
+    {
+        BackGroundImage.gameObject.SetActive(true);
+        GameOverText.gameObject.SetActive(true);
+        RestartButton.gameObject.SetActive(true);
+        TitleButton.gameObject.SetActive(true);
+
+        PlayerMove.speed = 0; 
+    }
+
+    void GameClear()
+    {
+        BackGroundImage.gameObject.SetActive(true);
+        GameClearText.gameObject.SetActive(true);
+        RestartButton.gameObject.SetActive(true);
+        TitleButton.gameObject.SetActive(true);
+
+        PlayerMove.speed = 0;
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     public float CheckPointDistance = 10.0f; // CheckPoint間の距離
-    public float speed; // 進むスピード
-    double level; // いくつCheckPointを通過したか
+    public static float speed; // 進むスピード
+    public static int level; // いくつCheckPointを通過したか
     public static int lane; // 今どのレーンにいるか、左：0 中央：1 右：2
     public GameObject MainCamera;
 
@@ -14,6 +14,7 @@ public class PlayerMove : MonoBehaviour
     {
         level = 1;
         lane = 1;
+        speed = 3;
     }
 
     void Update()
@@ -21,9 +22,20 @@ public class PlayerMove : MonoBehaviour
         if((int)this.transform.position.z > CheckPointDistance * level)
         {
             level++;
-            speed *= 1.1f;
+            speed *= 1.2f;
         }
         this.transform.position += new Vector3(0, 0, speed) * Time.deltaTime;
+
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            MoveLeft();
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            MoveRight();
+        }
     }
 
     public void MoveLeft()
@@ -45,4 +57,5 @@ public class PlayerMove : MonoBehaviour
             lane ++;
         }
     }
+
 }
