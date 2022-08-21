@@ -135,6 +135,7 @@ public class GameSystem : MonoBehaviour
         Set();
     }
 
+    int flag = 0;
     void Update()
     {
         LevelText.text = "Level : " + PlayerMove.level;
@@ -148,8 +149,12 @@ public class GameSystem : MonoBehaviour
             }
             else
             {
-                Debug.Log(r + " " + ans);
-                GameOver();
+                if (flag == 0)
+                {
+                    Debug.Log(r + " " + ans);
+                    flag = 1;
+                    GameOver();
+                }
             }
         }
 
@@ -168,7 +173,8 @@ public class GameSystem : MonoBehaviour
         RestartButton.gameObject.SetActive(true);
         TitleButton.gameObject.SetActive(true);
 
-        PlayerMove.speed = 0; 
+        PlayerMove.speed = 0;
+        Ranking.ScoreRanking.Add(Player.transform.position.z);
     }
 
     void GameClear()
