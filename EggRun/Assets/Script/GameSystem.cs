@@ -130,7 +130,7 @@ public class GameSystem : MonoBehaviour
         TitleButton.gameObject.SetActive(false);
 
         LevelText.text = "Level : " + 0;
-        ScoreText.text = "Score : " + 0 + "m";
+        ScoreText.text = "Score : " + 0;
         count = 0;
         Set();
     }
@@ -139,7 +139,7 @@ public class GameSystem : MonoBehaviour
     void Update()
     {
         LevelText.text = "Level : " + PlayerMove.level;
-        ScoreText.text = "Score : " + Player.transform.position.z.ToString("f1") + "m";
+        ScoreText.text = "Score : " + ((int)Player.transform.position.z) / 10;
 
         if (Player.transform.position.z - 0.5f >= TargetDistance * count)
         {
@@ -174,7 +174,7 @@ public class GameSystem : MonoBehaviour
         TitleButton.gameObject.SetActive(true);
 
         PlayerMove.speed = 0;
-        Ranking.ScoreRanking.Add(Player.transform.position.z);
+        Ranking.ScoreRanking.Add(new KeyValuePair<string, float>(ButtonSystem.UserName, Player.transform.position.z));
     }
 
     void GameClear()

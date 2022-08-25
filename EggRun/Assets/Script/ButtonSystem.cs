@@ -14,10 +14,31 @@ public class ButtonSystem : MonoBehaviour
     public Button RestartButton;
     public Button TitleButton;
 
+    public TMP_InputField inputField;
+
     float tmp;
+    public static string UserName;
+
+    int flag;
+
+    private void Start()
+    {
+        flag = 0;
+    }
+
+    public void GetUserName()
+    {
+        Debug.Log("a:" + flag);
+        UserName = inputField.text;
+        if (UserName == "") UserName = "No Name";
+        inputField.text = "";
+        flag = 1;
+        Debug.Log("b:" + flag);
+    }
 
     public void GameStart()
     {
+        if(flag == 0) GetUserName();
         SceneManager.LoadScene("2.Play");
     }
 
@@ -33,6 +54,7 @@ public class ButtonSystem : MonoBehaviour
 
     public void Title()
     {
+        flag = 0;
         SceneManager.LoadScene("1.Title");
     }
 
@@ -54,6 +76,8 @@ public class ButtonSystem : MonoBehaviour
         ResumeButton.gameObject.SetActive(false);
         RestartButton.gameObject.SetActive(false);
         TitleButton.gameObject.SetActive(false);
+
+        flag = 1;
 
         GameStart();
     }
