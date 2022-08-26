@@ -619,6 +619,7 @@ MonoBehaviour:
   ResumeButton: {fileID: 1249639437}
   RestartButton: {fileID: 744391907}
   TitleButton: {fileID: 683756727}
+  inputField: {fileID: 0}
 --- !u!4 &190445513
 Transform:
   m_ObjectHideFlags: 0

@@ -28,12 +28,10 @@ public class ButtonSystem : MonoBehaviour
 
     public void GetUserName()
     {
-        Debug.Log("a:" + flag);
         UserName = inputField.text;
         if (UserName == "") UserName = "No Name";
         inputField.text = "";
         flag = 1;
-        Debug.Log("b:" + flag);
     }
 
     public void GameStart()

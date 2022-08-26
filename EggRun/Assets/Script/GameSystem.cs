@@ -147,14 +147,11 @@ public class GameSystem : MonoBehaviour
             {
                 Set();
             }
-            else
+            else if(flag == 0)
             {
-                if (flag == 0)
-                {
-                    Debug.Log(r + " " + ans);
-                    flag = 1;
-                    GameOver();
-                }
+                Debug.Log(r + " " + ans);
+                flag = 1;
+                GameOver();
             }
         }
 
@@ -174,7 +171,20 @@ public class GameSystem : MonoBehaviour
         TitleButton.gameObject.SetActive(true);
 
         PlayerMove.speed = 0;
-        Ranking.ScoreRanking.Add(new KeyValuePair<string, float>(ButtonSystem.UserName, Player.transform.position.z));
+
+        if (Ranking.RankingDictionary.ContainsKey(ButtonSystem.UserName))
+        {
+            if (Ranking.RankingDictionary[ButtonSystem.UserName] < ((int)Player.transform.position.z) / 10)
+            {
+                Ranking.RankingDictionary.Remove(ButtonSystem.UserName);
+                Ranking.RankingDictionary.Add(ButtonSystem.UserName, ((int)Player.transform.position.z) / 10);
+            }
+            
+        }
+        else
+        {
+            Ranking.RankingDictionary.Add(ButtonSystem.UserName, ((int)Player.transform.position.z) / 10);
+        }
     }
 
     void GameClear()
