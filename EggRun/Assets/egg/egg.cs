@@ -9,7 +9,7 @@ public class egg : MonoBehaviour
     public Transform cam;
     private float x;
     private float z;
-    bool moving = false;
+    // bool moving = false;
     Animator animator;
     // Start is called before the first frame update
     void Start()
@@ -25,6 +25,7 @@ public class egg : MonoBehaviour
     {
         x = Input.GetAxisRaw("Horizontal");
         z = Input.GetAxisRaw("Vertical");
+        /*
         if(x == 0 && z == 0)
         {
             animator.SetTrigger("stopping");
@@ -33,6 +34,7 @@ public class egg : MonoBehaviour
         {
             animator.SetTrigger("moving");
         }
+        */
     }
 
     void FixedUpdate()

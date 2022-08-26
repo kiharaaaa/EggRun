@@ -14,15 +14,14 @@ public class GameSystem : MonoBehaviour
     public GameObject[] TargetPrefab;
     int ans;
     public GameObject Player;
-    public float GoalDistance;
     int r;
 
     public Image BackGroundImage;
-    public TextMeshProUGUI GameClearText;
     public TextMeshProUGUI GameOverText;
-    public Button ResumeButton;
     public Button RestartButton;
     public Button TitleButton;
+
+    public static int GameOverFlag = 0;
 
     int[,] TargetArray = new int[54, 5] {  // ans, 表示, 選択肢1~3
         { 0, 0, 0, 4, 8} ,
@@ -81,7 +80,7 @@ public class GameSystem : MonoBehaviour
         { 8, 3, 0, 4, 8} ,
         { 8, 4, 1, 3, 8} ,
         { 8, 0, 1, 3, 8} ,
-        { 6, 1, 0, 4, 6}
+        { 8, 1, 0, 4, 8}
     };
 
     void Set()
@@ -122,16 +121,17 @@ public class GameSystem : MonoBehaviour
 
     void Start()
     {
+        ScoreText.gameObject.SetActive(true);
+        LevelText.gameObject.SetActive(true);
         BackGroundImage.gameObject.SetActive(false);
-        GameClearText.gameObject.SetActive(false);
         GameOverText.gameObject.SetActive(false);
-        ResumeButton.gameObject.SetActive(false);
         RestartButton.gameObject.SetActive(false);
         TitleButton.gameObject.SetActive(false);
 
         LevelText.text = "Level : " + 0;
         ScoreText.text = "Score : " + 0;
         count = 0;
+        GameOverFlag = 0;
         Set();
     }
 
@@ -139,7 +139,7 @@ public class GameSystem : MonoBehaviour
     void Update()
     {
         LevelText.text = "Level : " + PlayerMove.level;
-        ScoreText.text = "Score : " + ((int)Player.transform.position.z) / 10;
+        ScoreText.text = "Score : " + ((int)(Player.transform.position.z - 0.5f)) / 10;
 
         if (Player.transform.position.z - 0.5f >= TargetDistance * count)
         {
@@ -155,16 +155,15 @@ public class GameSystem : MonoBehaviour
             }
         }
 
-        if (Player.transform.position.z - 0.5f >= GoalDistance)
-        {
-            Debug.Log("Goal!");
-            GameClear();
-        }
-
     }
 
     void GameOver()
     {
+        GameOverFlag = 1;
+        GameOverText.text = "Score : " + (((int)Player.transform.position.z) / 10).ToString();
+
+        ScoreText.gameObject.SetActive(false);
+        LevelText.gameObject.SetActive(false);
         BackGroundImage.gameObject.SetActive(true);
         GameOverText.gameObject.SetActive(true);
         RestartButton.gameObject.SetActive(true);
@@ -185,15 +184,5 @@ public class GameSystem : MonoBehaviour
         {
             Ranking.RankingDictionary.Add(ButtonSystem.UserName, ((int)Player.transform.position.z) / 10);
         }
-    }
-
-    void GameClear()
-    {
-        BackGroundImage.gameObject.SetActive(true);
-        GameClearText.gameObject.SetActive(true);
-        RestartButton.gameObject.SetActive(true);
-        TitleButton.gameObject.SetActive(true);
-
-        PlayerMove.speed = 0;
     }
 }

@@ -26,15 +26,17 @@ public class PlayerMove : MonoBehaviour
         }
         this.transform.position += new Vector3(0, 0, speed) * Time.deltaTime;
 
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (GameSystem.GameOverFlag == 0)
         {
-            MoveLeft();
-        }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                MoveLeft();
+            }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            MoveRight();
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                MoveRight();
+            }
         }
     }
 
