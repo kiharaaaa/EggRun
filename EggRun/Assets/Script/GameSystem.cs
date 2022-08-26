@@ -6,7 +6,7 @@ using TMPro;
 
 public class GameSystem : MonoBehaviour
 {
-    public TextMeshProUGUI ScoreText;
+    public Text ScoreText;
 
     public float TargetDistance;
     int count;
@@ -16,9 +16,10 @@ public class GameSystem : MonoBehaviour
     int r;
 
     public Image BackGroundImage;
-    public TextMeshProUGUI GameOverText;
+    public Text GameOverText;
     public Button RestartButton;
     public Button TitleButton;
+
 
     public static int GameOverFlag = 0;
 
