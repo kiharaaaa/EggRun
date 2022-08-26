@@ -27,6 +27,10 @@ public class ButtonSystem : MonoBehaviour
     {
         UserName = inputField.text;
         if (UserName == "") UserName = "No Name";
+        if(inputField.text.Length > 10)
+        {
+            UserName = inputField.text.Substring(0, 10);
+        }
         inputField.text = "";
         flag = 1;
     }

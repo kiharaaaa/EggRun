@@ -7,7 +7,6 @@ using TMPro;
 public class GameSystem : MonoBehaviour
 {
     public TextMeshProUGUI ScoreText;
-    public TextMeshProUGUI LevelText;
 
     public float TargetDistance;
     int count;
@@ -122,13 +121,11 @@ public class GameSystem : MonoBehaviour
     void Start()
     {
         ScoreText.gameObject.SetActive(true);
-        LevelText.gameObject.SetActive(true);
         BackGroundImage.gameObject.SetActive(false);
         GameOverText.gameObject.SetActive(false);
         RestartButton.gameObject.SetActive(false);
         TitleButton.gameObject.SetActive(false);
 
-        LevelText.text = "Level : " + 0;
         ScoreText.text = "Score : " + 0;
         count = 0;
         GameOverFlag = 0;
@@ -138,7 +135,6 @@ public class GameSystem : MonoBehaviour
     int flag = 0;
     void Update()
     {
-        LevelText.text = "Level : " + PlayerMove.level;
         ScoreText.text = "Score : " + ((int)(Player.transform.position.z - 0.5f)) / 10;
 
         if (Player.transform.position.z - 0.5f >= TargetDistance * count)
@@ -163,7 +159,6 @@ public class GameSystem : MonoBehaviour
         GameOverText.text = "Score : " + (((int)Player.transform.position.z) / 10).ToString();
 
         ScoreText.gameObject.SetActive(false);
-        LevelText.gameObject.SetActive(false);
         BackGroundImage.gameObject.SetActive(true);
         GameOverText.gameObject.SetActive(true);
         RestartButton.gameObject.SetActive(true);

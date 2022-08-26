@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    public float CheckPointDistance = 10.0f; // CheckPoint間の距離
+    float CheckPointDistance = 30.0f; // CheckPoint間の距離
     public static float speed; // 進むスピード
     public static int level; // いくつCheckPointを通過したか
     public static int lane; // 今どのレーンにいるか、左：0 中央：1 右：2
     public GameObject MainCamera;
+    public GameObject paperFubuki;
+    float paperFubukiDistance;
+    int cntForPaperFubuki;
+    [SerializeField] private ParticleSystem particle1;
+    [SerializeField] private ParticleSystem particle2;
+    [SerializeField] private ParticleSystem particle3;
 
     void Start()
     {
         level = 1;
         lane = 1;
         speed = 3;
+        paperFubukiDistance = 10.0f;
+        cntForPaperFubuki = 1;
     }
 
     void Update()
@@ -38,6 +46,18 @@ public class PlayerMove : MonoBehaviour
                 MoveRight();
             }
         }
+
+        if ((int)this.transform.position.z > paperFubukiDistance * cntForPaperFubuki)
+        {
+            cntForPaperFubuki++;
+            particle1.Play();
+            particle2.Play();
+            particle3.Play();
+        }
+        //if ((int)this.transform.position.z > cntForPaperFubuki * cntForPaperFubuki - 2.0f)
+        //{
+        //    paperFubuki.SetActive(false);
+        //}
     }
 
     public void MoveLeft()
