@@ -47,7 +47,7 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-        if ((int)this.transform.position.z > paperFubukiDistance * cntForPaperFubuki)
+        if ((int)this.transform.position.z + 0.5 > paperFubukiDistance * cntForPaperFubuki)
         {
             cntForPaperFubuki++;
             particle1.Play();

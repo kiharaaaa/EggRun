@@ -20,6 +20,14 @@ public class GameSystem : MonoBehaviour
     public Button RestartButton;
     public Button TitleButton;
 
+    GameObject leftTarget;
+    GameObject centerTarget;
+    GameObject rightTarget;
+    Animator ansAnim;
+    Animator dest1;
+    Animator dest2;
+    int animFlag = 0;
+
 
     public static int GameOverFlag = 0;
 
@@ -85,6 +93,18 @@ public class GameSystem : MonoBehaviour
 
     void Set()
     {
+        if (animFlag == 1)
+        {
+            if (ans == 0) { ansAnim = leftTarget.GetComponent<Animator>(); dest1 = centerTarget.GetComponent<Animator>(); dest2 = rightTarget.GetComponent<Animator>(); }
+            if (ans == 1) { ansAnim = centerTarget.GetComponent<Animator>(); dest1 = leftTarget.GetComponent<Animator>(); dest2 = rightTarget.GetComponent<Animator>(); }
+            if (ans == 2) { ansAnim = rightTarget.GetComponent<Animator>(); dest1 = leftTarget.GetComponent<Animator>(); dest2 = centerTarget.GetComponent<Animator>(); }
+
+            ansAnim.Play("Base Layer.Target", 0, 0.0f);
+            dest1.Play("Base Layer.FadeOut", 0, 0.0f);
+            dest2.Play("Base Layer.FadeOut", 0, 0.0f);
+        }
+        else animFlag = 1;
+
         count++;
 
         r = Random.Range(0, 54);
@@ -114,14 +134,18 @@ public class GameSystem : MonoBehaviour
             }
         }
 
-        Instantiate(TargetPrefab[ choice[0] ], new Vector3(-2.0f, 0.5f, TargetDistance * count), Quaternion.identity);
-        Instantiate(TargetPrefab[ choice[1] ], new Vector3( 0.0f, 0.5f, TargetDistance * count), Quaternion.identity);
-        Instantiate(TargetPrefab[ choice[2] ], new Vector3( 2.0f, 0.5f, TargetDistance * count), Quaternion.identity);
+        leftTarget = Instantiate(TargetPrefab[choice[0]], new Vector3(-2.0f, 0.5f, TargetDistance * count), Quaternion.identity);
+        centerTarget = Instantiate(TargetPrefab[choice[1]], new Vector3(0.0f, 0.5f, TargetDistance * count), Quaternion.identity);
+        rightTarget = Instantiate(TargetPrefab[choice[2]], new Vector3(2.0f, 0.5f, TargetDistance * count), Quaternion.identity);
+
+        if (choice[0] == 2 || choice[0] == 5 || choice[0] == 8) { leftTarget.transform.Rotate(0, 90, 0); }
+        if (choice[1] == 2 || choice[1] == 5 || choice[1] == 8) { centerTarget.transform.Rotate(0, 90, 0); }
+        if (choice[2] == 2 || choice[2] == 5 || choice[2] == 8) { rightTarget.transform.Rotate(0, 90, 0); }
+
     }
 
-    void Start()
+    private void Start()
     {
-        ScoreText.gameObject.SetActive(true);
         BackGroundImage.gameObject.SetActive(false);
         GameOverText.gameObject.SetActive(false);
         RestartButton.gameObject.SetActive(false);
@@ -138,7 +162,7 @@ public class GameSystem : MonoBehaviour
     {
         ScoreText.text = "Score : " + ((int)(Player.transform.position.z - 0.5f)) / 10;
 
-        if (Player.transform.position.z - 0.5f >= TargetDistance * count)
+        if (Player.transform.position.z + 0.5f >= TargetDistance * count)
         {
             if (PlayerMove.lane == ans)
             {
