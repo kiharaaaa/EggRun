@@ -6,7 +6,7 @@ using TMPro;
 
 public class GameSystem : MonoBehaviour
 {
-    public TextMeshProUGUI ScoreText;
+    public Text ScoreText;
 
     public float TargetDistance;
     int count;
@@ -16,11 +16,23 @@ public class GameSystem : MonoBehaviour
     int r;
 
     public Image BackGroundImage;
-    public TextMeshProUGUI GameOverText;
+    public Text GameOverText;
     public Button RestartButton;
     public Button TitleButton;
 
+    GameObject leftTarget;
+    GameObject centerTarget;
+    GameObject rightTarget;
+    Animator ansAnim;
+    Animator dest1;
+    Animator dest2;
+    int animFlag = 0;
+
     public static int GameOverFlag = 0;
+
+    public Text ReadyText;
+    public Text GoText;
+    public Image DisplayImage;
 
     int[,] TargetArray = new int[54, 5] {  // ans, 表示, 選択肢1~3
         { 0, 0, 0, 4, 8} ,
@@ -84,6 +96,18 @@ public class GameSystem : MonoBehaviour
 
     void Set()
     {
+        if (animFlag == 1)
+        {
+            if (ans == 0) { ansAnim = leftTarget.GetComponent<Animator>(); dest1 = centerTarget.GetComponent<Animator>(); dest2 = rightTarget.GetComponent<Animator>(); }
+            if (ans == 1) { ansAnim = centerTarget.GetComponent<Animator>(); dest1 = leftTarget.GetComponent<Animator>(); dest2 = rightTarget.GetComponent<Animator>(); }
+            if (ans == 2) { ansAnim = rightTarget.GetComponent<Animator>(); dest1 = leftTarget.GetComponent<Animator>(); dest2 = centerTarget.GetComponent<Animator>(); }
+
+            ansAnim.Play("Base Layer.Target", 0, 0.0f);
+            dest1.Play("Base Layer.FadeOut", 0, 0.0f);
+            dest2.Play("Base Layer.FadeOut", 0, 0.0f);
+        }
+        else animFlag = 1;
+
         count++;
 
         r = Random.Range(0, 54);
@@ -113,22 +137,50 @@ public class GameSystem : MonoBehaviour
             }
         }
 
-        Instantiate(TargetPrefab[ choice[0] ], new Vector3(-2.0f, 0.5f, TargetDistance * count), Quaternion.identity);
-        Instantiate(TargetPrefab[ choice[1] ], new Vector3( 0.0f, 0.5f, TargetDistance * count), Quaternion.identity);
-        Instantiate(TargetPrefab[ choice[2] ], new Vector3( 2.0f, 0.5f, TargetDistance * count), Quaternion.identity);
+        leftTarget = Instantiate(TargetPrefab[choice[0]], new Vector3(-2.0f, 0.5f, TargetDistance * count), Quaternion.identity);
+        centerTarget = Instantiate(TargetPrefab[choice[1]], new Vector3(0.0f, 0.5f, TargetDistance * count), Quaternion.identity);
+        rightTarget = Instantiate(TargetPrefab[choice[2]], new Vector3(2.0f, 0.5f, TargetDistance * count), Quaternion.identity);
+
+        if (choice[0] == 2 || choice[0] == 5 || choice[0] == 8) { leftTarget.transform.Rotate(0, 90, 0); }
+        if (choice[1] == 2 || choice[1] == 5 || choice[1] == 8) { centerTarget.transform.Rotate(0, 90, 0); }
+        if (choice[2] == 2 || choice[2] == 5 || choice[2] == 8) { rightTarget.transform.Rotate(0, 90, 0); }
+
     }
 
-    void Start()
+    void GoodBye()
     {
+        GoText.gameObject.SetActive(false);
+    }
+
+    void ReadyGo()
+    {
+        BackGroundImage.gameObject.SetActive(false);
+        ReadyText.gameObject.SetActive(false);
+        DisplayImage.gameObject.SetActive(true);
+        GoText.gameObject.SetActive(true);
         ScoreText.gameObject.SetActive(true);
+        Invoke("GoodBye", 0.7f);
+    }
+
+    private void Start()
+    {
         BackGroundImage.gameObject.SetActive(false);
         GameOverText.gameObject.SetActive(false);
         RestartButton.gameObject.SetActive(false);
         TitleButton.gameObject.SetActive(false);
+        DisplayImage.gameObject.SetActive(false);
+        ScoreText.gameObject.SetActive(false);
 
         ScoreText.text = "Score : " + 0;
         count = 0;
         GameOverFlag = 0;
+
+
+        GoText.gameObject.SetActive(false);
+        BackGroundImage.gameObject.SetActive(true);
+        ReadyText.gameObject.SetActive(true);
+        Invoke("ReadyGo", 1.2f);
+
         Set();
     }
 
@@ -137,7 +189,7 @@ public class GameSystem : MonoBehaviour
     {
         ScoreText.text = "Score : " + ((int)(Player.transform.position.z - 0.5f)) / 10;
 
-        if (Player.transform.position.z - 0.5f >= TargetDistance * count)
+        if (Player.transform.position.z + 0.5f >= TargetDistance * count)
         {
             if (PlayerMove.lane == ans)
             {
@@ -145,7 +197,6 @@ public class GameSystem : MonoBehaviour
             }
             else if(flag == 0)
             {
-                Debug.Log(r + " " + ans);
                 flag = 1;
                 GameOver();
             }
@@ -163,6 +214,8 @@ public class GameSystem : MonoBehaviour
         GameOverText.gameObject.SetActive(true);
         RestartButton.gameObject.SetActive(true);
         TitleButton.gameObject.SetActive(true);
+        DisplayImage.gameObject.SetActive(false);
+        ScoreText.gameObject.SetActive(false);
 
         PlayerMove.speed = 0;
 

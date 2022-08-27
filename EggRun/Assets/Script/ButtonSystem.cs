@@ -9,7 +9,7 @@ using System.Linq;
 public class ButtonSystem : MonoBehaviour
 {
     public Image BackGroundImage;
-    public TextMeshProUGUI GameOverText;
+    public Text GameOverText;
     public Button RestartButton;
     public Button TitleButton;
     public TMP_InputField inputField;
@@ -27,9 +27,9 @@ public class ButtonSystem : MonoBehaviour
     {
         UserName = inputField.text;
         if (UserName == "") UserName = "No Name";
-        if(inputField.text.Length > 10)
+        if(inputField.text.Length > 9)
         {
-            UserName = inputField.text.Substring(0, 10);
+            UserName = inputField.text.Substring(0, 9);
         }
         inputField.text = "";
         flag = 1;
@@ -38,7 +38,7 @@ public class ButtonSystem : MonoBehaviour
     public void GameStart()
     {
         if(flag == 0) GetUserName();
-        SceneManager.LoadScene("2.Play");
+        SceneManager.LoadScene("3.Play");
     }
 
 
