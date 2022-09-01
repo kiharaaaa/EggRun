@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1440
     height: 872
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 20624
+  controlID: 17
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 20554
+  controlID: 97
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -191,8 +191,8 @@ MonoBehaviour:
     y: 0
     width: 901
     height: 485
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 11}
   m_Panes:
   - {fileID: 13}
@@ -247,8 +247,8 @@ MonoBehaviour:
     y: 0
     width: 345.5
     height: 822
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 1792, y: 828}
+  m_TargetSize: {x: 828, y: 1792}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -297,16 +297,16 @@ MonoBehaviour:
   m_VSyncEnabled: 0
   m_Gizmos: 0
   m_Stats: 0
-  m_SelectedSizes: 07000000000000000600000000000000000000000000000000000000000000000000000000000000
+  m_SelectedSizes: 07000000000000000500000000000000000000000000000000000000000000000000000000000000
   m_ZoomArea:
     m_HRangeLocked: 0
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -448
-    m_HBaseRangeMax: 448
-    m_VBaseRangeMin: -207
-    m_VBaseRangeMax: 207
+    m_HBaseRangeMin: -207
+    m_HBaseRangeMax: 207
+    m_VBaseRangeMin: -448
+    m_VBaseRangeMax: 448
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -326,7 +326,7 @@ MonoBehaviour:
       y: 21
       width: 899
       height: 443
-    m_Scale: {x: 1, y: 1}
+    m_Scale: {x: 0.49441963, y: 0.49441963}
     m_Translation: {x: 449.5, y: 221.5}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -334,12 +334,12 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -449.5
-      y: -221.5
-      width: 899
-      height: 443
+      x: -909.1467
+      y: -448
+      width: 1818.2935
+      height: 896
     m_MinimalGUI: 1
-  m_defaultScale: 1
+  m_defaultScale: 0.49441963
   m_LastWindowPixelSize: {x: 1798, y: 928}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
@@ -377,9 +377,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: c2a0d4ff00a1d4ff86c6d8ff90c6d8ff6e2cdaffae9adbffba9bdbfff6c0dfff2cc1dfff5cc1dfffc65be5ff7a14ebff08a7f0ff54b9f0ff546efaff2a94feff38fbffff04670300ee670300506a0300cab307007cb4070086b40700b6b4070028a40a003ea60a0060a60a00f2b60c00a2ce0c00
+      m_SelectedIDs: 0cda1200
+      m_LastClickedID: 1235468
+      m_ExpandedIDs: 647de9ff9a7de9ffa2e3eaff0012efff3612efffdeb0f4ff0eb4f4ff82ddf8ffb645fafffc6afeff406bfeffb87ffeff38fbffffc05a0000e25a0000165b0000dcfd0100b20002007c01020046020200ec04020094080200ee0a0200040b0200180b0200581d0900941d0900
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -679,7 +679,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0, y: 0, z: 0, w: 1}
     speed: 2
-    m_Value: {x: -0, y: 0, z: -0, w: -1}
+    m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
     m_Target: 5.508171
     speed: 2
@@ -1008,14 +1008,14 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Scenes
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: /Users/kiharakousei/Documents/06_Unity/egger_app
+  m_LastProjectPath: /Users/kiharakousei/Documents/06_Unity/egger/egger_app
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 40}
-    m_SelectedIDs: fcf50100
-    m_LastClickedID: 128508
-    m_ExpandedIDs: 00000000b4f50100b6f50100b8f50100baf50100bcf50100bef50100c0f50100c2f50100f4f50100
+    m_SelectedIDs: eaf50100
+    m_LastClickedID: 128490
+    m_ExpandedIDs: 00000000caf50100ccf50100cef50100d0f50100d2f50100d4f50100d6f50100d8f50100e2f50100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1043,7 +1043,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000b4f50100b6f50100b8f50100baf50100bcf50100bef50100c0f50100c2f50100
+    m_ExpandedIDs: 00000000caf50100ccf50100cef50100d0f50100d2f50100d4f50100d6f50100d8f50100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
