@@ -135,5 +135,10 @@ public class RuleSystem : MonoBehaviour
         animePoint = 0;
         CancelInvoke();
     }
+    public void SkipButton()
+    {
+        CancelInvoke();
+        SceneManager.LoadScene("3.Play");
+    }
 
 }
