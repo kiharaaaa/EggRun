@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Linq;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class Ranking : MonoBehaviour
 {
@@ -19,13 +20,14 @@ public class Ranking : MonoBehaviour
         SetRanking();
     }
 
+    /*
     public void Update()
     {
         bool tmp = Input.GetKeyDown(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.RightShift);
 
         if (tmp)
         {
-            bool b = UnityEditor.EditorUtility.DisplayDialog("ランキング", "リセットしますか？", "yes", "no");
+            // bool b = EditorUtility.DisplayDialog("ランキング", "リセットしますか？", "yes", "no");
             if (b)
             {
                 PlayerPrefs.DeleteAll();
@@ -34,6 +36,7 @@ public class Ranking : MonoBehaviour
             }
         }
     }
+    */
 
     public void LoadPrefs()
     {

@@ -26,7 +26,7 @@ public class ButtonSystem : MonoBehaviour
 
     private void Start()
     {
-        
+        Screen.SetResolution(1280, 720, false, 60);
         flag = 0;
     }
 

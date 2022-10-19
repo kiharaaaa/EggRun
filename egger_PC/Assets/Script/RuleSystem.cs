@@ -24,6 +24,7 @@ public class RuleSystem : MonoBehaviour
 
     void Start()
     {
+        Screen.SetResolution(1280, 720, false, 60);
         slidePoint = 0;
         animePoint = 0;
         n = 2;

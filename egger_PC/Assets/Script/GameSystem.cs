@@ -236,6 +236,7 @@ public class GameSystem : MonoBehaviour
 
     private void Start()
     {
+        Screen.SetResolution(1280, 720, false, 60);
         life = 3;
         mistakeFlag = false;
         GameOverFlag = 0;
