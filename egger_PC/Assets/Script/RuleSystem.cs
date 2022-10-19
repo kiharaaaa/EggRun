@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class RuleSystem : MonoBehaviour
 {
@@ -15,9 +14,6 @@ public class RuleSystem : MonoBehaviour
     public GameObject[] RLImage;
     public GameObject RuleEndImage;
     public AudioSource ButtonSE;
-
-    [SerializeField] private GameObject loading;
-    [SerializeField] private Slider slider; 
 
     int flag0 = 0, flag1 = 0, flag2 = 0, flag3 = 0, flag4 = 0;
 
@@ -93,9 +89,7 @@ public class RuleSystem : MonoBehaviour
         }
         else if (slidePoint == 5) // プレイ画面へ
         {
-            //SceneManager.LoadScene("3.Play");
-            loading.SetActive(true);
-            StartCoroutine(LoadScene());
+            SceneManager.LoadScene("3.Play");
         }
     }
 
@@ -144,20 +138,7 @@ public class RuleSystem : MonoBehaviour
     public void SkipButton()
     {
         CancelInvoke();
-        //SceneManager.LoadScene("3.Play");
-        loading.SetActive(true);
-        StartCoroutine(LoadScene());
+        SceneManager.LoadScene("3.Play");
     }
 
-
-    IEnumerator LoadScene()
-    {
-        slidePoint++;
-        AsyncOperation async = SceneManager.LoadSceneAsync("3.Play");
-        while (!async.isDone)
-        {
-            slider.value = async.progress;
-            yield return null;
-        }
-    }
 }
